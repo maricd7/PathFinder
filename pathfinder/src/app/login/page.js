@@ -1,11 +1,12 @@
 import React from 'react'
-
+import LoginComponent from '../components/LoginComponent/LoginComponent'
+  
 
 function Login() {
   return (
-    <div className='w-full h-full flex flex-col items-center justify-center'>
-       asdsad
-    </div>
+   <div className='h-full flex justify-center items-center w-full'>
+    <LoginComponent/>
+   </div>
   )
 }
 

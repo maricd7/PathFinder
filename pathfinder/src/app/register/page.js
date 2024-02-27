@@ -1,12 +1,13 @@
 import React from 'react'
+import RegisterComponent from '../components/RegisterComponent/RegisterComponent'
 
 
-function Login() {
+function Register() {
   return (
-    <div className='w-full h-full flex flex-col items-center justify-center'>
-       asdsad
+    <div className='h-full flex justify-center items-center w-full'>
+      <RegisterComponent/>
     </div>
   )
 }
 
-export default Login
+export default Register

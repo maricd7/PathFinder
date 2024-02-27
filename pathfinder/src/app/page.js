@@ -1,6 +1,7 @@
 
 import Heading from "./components/common/Heading/Heading";
 import CtaButton from "./components/common/Button/CtaButton";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,8 +12,8 @@ export default function Home() {
         connect with your audience like never before.
       </p>
       <div className="flex gap-4 mt-8">
-        <CtaButton text="Register" />
-        <CtaButton text="Login" />
+        <Link href='/register'><CtaButton text="Register" /></Link>
+        <Link href='/login'><CtaButton text="Login" /></Link>
       </div>
     </div>
   );

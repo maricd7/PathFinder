@@ -1,7 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-export default function Input({placeholder,type, value, onChange}) {
+const Input = React.forwardRef(({ placeholder, type, value, onChange }, ref) => {
   return (
-    <input className='px-4 py-2 rounded-lg text-slate-950' placeholder={placeholder} type={type} value={value} onChange={onChange}/>
-  )
-}
+    <input
+      className='px-4 py-2 rounded-lg text-slate-950'
+      placeholder={placeholder}
+      type={type}
+      value={value}
+      onChange={onChange}
+      ref={ref}
+    />
+  );
+});
+
+export default Input;

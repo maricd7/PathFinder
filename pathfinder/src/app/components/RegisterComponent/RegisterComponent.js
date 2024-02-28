@@ -5,13 +5,14 @@ import Input from '../common/Input/Input';
 import CtaButton from '../common/Button/CtaButton';
 import Link from 'next/link';
 import {app,auth} from '../../firebase';
-import { createUserWithEmailAndPassword }  from 'firebase/auth';
+import { createUserWithEmailAndPassword,updateProfile }  from 'firebase/auth';
 
 
 export default function RegisterComponent() {
   const emailRegisterRef = useRef();
   const passwordRegisterRef = useRef();
   const passwordConfirmRef = useRef();
+  const displayNameRef = useRef();
   const [error, setError] = useState(null);
 
   console.log(app,'asasdasd');
@@ -28,7 +29,10 @@ export default function RegisterComponent() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      await updateProfile(user, { displayName: displayNameRef.current.value });
+      console.log(user.displayName, 'displayName');
     } catch (error) {
       setError(error.message);
     }
@@ -44,6 +48,11 @@ export default function RegisterComponent() {
         <h2 className='text-2xl'>Register with email</h2>
         {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleRegister} className='flex flex-col gap-4'>
+        <Input
+          placeholder='Display Name'
+          type='text'
+          ref={displayNameRef}
+        />
         <Input
           placeholder='Email'
           ref={emailRegisterRef}

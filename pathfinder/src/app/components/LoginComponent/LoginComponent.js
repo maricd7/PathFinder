@@ -5,22 +5,30 @@ import Input from '../common/Input/Input'
 import CtaButton from '../common/Button/CtaButton'
 import Link from 'next/link'
 import { auth } from '@/app/firebase'
+import { useRouter } from 'next/navigation'
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function LoginComponent() {
   const emailLoginRef = useRef();
   const passwordLoginRef = useRef();
   const [error, setError] = useState(null);
+  const router = useRouter()
 
   async function handleLogin(e){
     e.preventDefault();
 
+
     const email = emailLoginRef.current.value;
     const password = passwordLoginRef.current.value;
-
-
     try{
       await signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+      console.log('Signed in', user)
+      router.push('/links')
+    })
     }catch(error){
+      console.log('err')
       setError(error)
     }
     

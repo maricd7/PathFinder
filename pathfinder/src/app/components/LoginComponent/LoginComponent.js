@@ -13,6 +13,7 @@ export default function LoginComponent() {
   const passwordLoginRef = useRef();
   const [error, setError] = useState(null);
   const router = useRouter()
+  const productRef = "/links/" + 'bro';
 
   async function handleLogin(e){
     e.preventDefault();
@@ -25,7 +26,7 @@ export default function LoginComponent() {
       .then((userCredential) => {
         const user = userCredential.user;
       console.log('Signed in', user)
-      router.push('/links')
+      router.push('/links/bro')
     })
     }catch(error){
       console.log('err')

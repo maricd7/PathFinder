@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 
 function Links() {
   const user = auth.currentUser;
+  const userName = user.displayName;
   const router = useRouter()
 if (user) {
   console.log(user, 'asdasd')
@@ -24,13 +25,13 @@ function handleSignOut() {
     console.log(error);
   });
 }
-
+console.log(userName, 'userName')
   return (
     <div className='flex flex-col gap-4 justify-center items-center h-full'>
-        <Heading text='Jon Doe Links'/>
+        <Heading text={userName +' links'}/>
         <LinkComponent text='Follow my facebook' link='https://www.facebook.com'/>
-        <button onClick={()=>handleSignOut()}>Sign out</button>
         <CreateLink/>
+        {user ? <button onClick={()=>handleSignOut()}>Sign out</button> : <></>}
     </div>
   )
 }

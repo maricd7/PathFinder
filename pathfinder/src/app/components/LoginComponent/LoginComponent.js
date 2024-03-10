@@ -26,7 +26,7 @@ export default function LoginComponent() {
       .then((userCredential) => {
         const user = userCredential.user;
       console.log('Signed in', user)
-      router.push('/links/bro')
+      router.push('/links/' + user.displayName)
     })
     }catch(error){
       console.log('err')

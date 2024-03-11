@@ -2,8 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
 import {getAuth} from 'firebase/auth'
 
-
-
 const firebaseConfig = {
     apiKey:process.env.NEXT_PUBLIC_API_KEY,
     authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
@@ -20,4 +18,4 @@ const app = initializeApp(firebaseConfig);
 //   const analytics = getAnalytics(app);
 const auth = getAuth();
 
-export {app,auth};
+export {app,auth,};

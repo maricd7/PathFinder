@@ -2,12 +2,13 @@
 import CreateLink from '@/app/components/CreateLink/CreateLink'
 import LinkComponent from '@/app/components/LinkComponent/LinkComponent'
 import Heading from '@/app/components/common/Heading/Heading'
-import React from 'react'
-import {app,auth,} from '@/app/firebase';
+import React, { useState } from 'react'
+import {app,auth} from '@/app/firebase';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation'
 
 function Links() {
+  const [createLinkModal,setCreateLinkModal] = useState(false)
   const user = auth.currentUser;
   const userName = user.displayName;
   const router = useRouter()
@@ -25,12 +26,13 @@ function handleSignOut() {
     console.log(error);
   });
 }
-console.log(userName, 'userName')
-  return (
+
+return (
     <div className='flex flex-col gap-4 justify-center items-center h-full'>
         <Heading text={userName +' links'}/>
         <LinkComponent text='Follow my facebook' link='https://www.facebook.com'/>
-        <CreateLink/>
+        <span onClick={()=>{setCreateLinkModal(true)}} className='cursor-pointer'>Create a link</span>
+        {createLinkModal ? <CreateLink setCreateLinkModal={setCreateLinkModal}/> : <></>}
         {user ? <button onClick={()=>handleSignOut()}>Sign out</button> : <></>}
     </div>
   )
